@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>Bienvenido</h2>
+<a href="{{ url_for('main.add_employee') }}">Añadir empleado</a>
+<table>
+    <tr><th>Nombre</th><th>Puesto</th><th>Salario</th><th>Acciones</th></tr>
+    {% for emp in employees %}
+    <tr>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.position }}</td>
+        <td>{{ emp.salary }}</td>
+        <td>
+            <a href="{{ url_for('main.edit_employee', id=emp.id) }}">Editar</a>
+            <a href="{{ url_for('main.delete_employee', id=emp.id) }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
